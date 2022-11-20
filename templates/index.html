@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>HTML Form</title>
+</head>
+<style>
+    .inrow{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .content{
+        overflow: hidden;
+        border: 1px solid #ccc;
+        border-style: solid;
+        box-sizing: border-box;
+        width: 50%;
+    }
+    .timer{
+        overflow: hidden;
+        width: 100%;
+    }
+    .incontent{
+        overflow: hidden;
+        border: 1px solid #ccc;
+        border-style: solid;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: lightblue;
+        font-family: Perpetua;
+    }
+
+    table, td, th {
+        border: 1px solid black;
+        padding: 4px;
+    }
+
+    thead {
+        text-align: center;
+        color: white;
+        background-color: darkblue;
+    }
+
+    .used{
+        background-color: #E74C3C ;
+    }
+</style>
+
+<script type="text/javascript">
+    function check_select(checkbox) {
+        for(var I=1;I<=5;I++){
+            console.log("week"+I);
+            console.log("time_interval"+I);
+            var week_select = document.getElementsByName("week"+I);
+            var time_select = document.getElementsByName("time_interval"+I);
+            var time_sum = 0, week_sum = 0;
+
+            time_select[9].disabled = true;
+            time_select[10].disabled = true;
+            for (var i = 0; i < week_select.length; i++) {
+                // console.log(week_sum[i].checked);
+                if (week_select[i].checked)
+                    week_sum++;
+            }
+
+            for (var i = 0; i < time_select.length; i++) {
+                // console.log(time_sum[i].checked);
+                if (time_select[i].checked)
+                    time_sum++;
+            }
+            //console.log(week_sum, time_sum);
+
+            if((week_select[5].checked==1 || week_select[6].checked==1) && time_select[7].checked==1){
+                for(var i = 0;i<7;i++){
+                    time_select[i].disabled = true;
+                    time_select[i].checked = false;
+                }
+                for(var i = 8;i<14;i++){
+                    time_select[i].disabled = true;
+                    time_select[i].checked = false;
+                }
+                for(var i=0;i<week_select.length;i++)
+                    if(!week_select[i].checked)
+                        week_select[i].disabled=true;
+                continue;
+            }
+            if((week_select[0].checked==1 || week_select[1].checked==1 ||
+                week_select[2].checked==1 || week_select[3].checked==1 ||
+                week_select[4].checked==1 ) && time_select[13].checked==1){
+                for(var i = 0;i<13;i++){
+                    time_select[i].disabled = true;
+                    time_select[i].checked = false;
+                }
+                for(var i=0;i<week_select.length;i++)
+                    if(!week_select[i].checked)
+                        week_select[i].disabled=true;
+                continue;
+            }
+            if(week_select[5].checked == 1 || week_select[6].checked == 1) {
+                time_sum=0;
+                for(var i=0;i<8;i++){
+                    time_select[i].disabled=false;
+                    if(time_select[i].checked)
+                        time_sum++;
+                }
+                if(time_sum==2){
+                    for(var i=0;i<8;i++){
+                        if(!time_select[i].checked)
+                            time_select[i].disabled=true;
+                    }
+                }
+                for (var i = 8; i <= 13; i++){
+                    time_select[i].disabled = true;
+                    time_select[i].checked = false;
+                }
+                for(var i=0;i<week_select.length;i++)
+                    if(!week_select[i].checked)
+                        week_select[i].disabled=true;
+                continue;
+            }
+
+            if(week_sum==1){
+                for(var i=0;i<week_select.length;i++)
+                    if(!week_select[i].checked)
+                        week_select[i].disabled=true;
+
+                
+            }
+            else{
+                for(var i=0;i<week_select.length;i++)
+                    week_select[i].disabled=false;
+            }
+
+            if(time_sum==2){
+                for(var i=0;i<time_select.length;i++)
+                    if(!time_select[i].checked)
+                        time_select[i].disabled=true;
+            }
+            else{
+                for(var i=0;i<time_select.length;i++){
+                    if(i==9 || i==10) continue;
+                    time_select[i].disabled=false;
+                } 
+            
+            }
+            //if((time_sum!=2) && (week_sum!=1)){
+            //    for(var i=0;i<week_select.length;i++)
+            //        week_select[i].disabled=false;
+            //    for(var i=0;i<time_select.length;i++)
+            //        time_select[i].disabled=false;
+            //}
+            
+        }
+    }
+    function mem(checkbox){
+        for(var I=1;I<=5;I++){
+            var band_name = document.getElementById("bn"+I).value;
+            var week_select = document.getElementsByName("week"+I);
+            var time_select = document.getElementsByName("time_interval"+I);
+            var week=null;
+            for(var i=0;i<week_select.length;i++)
+                if(week_select[i].checked)
+                    week=i;
+            
+            var times=new Array();
+            for(var i=0;i<time_select.length;i++)
+                if(time_select[i].checked)
+                    times.push(i);
+            
+            var form={band_name:band_name, week:week, times: times};
+            console.log(form);
+            var mem=localStorage;
+            mem.setItem(""+I, JSON.stringify(form));
+        }
+    }
+    var date;
+    function clear(){
+        var mem=localStorage;
+        mem.clear();
+        console.log("clear all");
+        date=null;
+        for(var I=1;I<=5;I++){
+            var week_select = document.getElementsByName("week"+I);
+            var time_select = document.getElementsByName("time_interval"+I);
+            for(var i=0;i<week_select.length;i++){
+                week_select[i].checked=false;
+                week_select[i].disabled=false;
+            }
+            for(var i=0;i<time_select.length;i++){
+                time_select[i].checked=false;
+                time_select[i].disabled=false;
+            }
+        }
+    }
+    function sub(){
+        mem();
+        document.getElementById("form").submit();
+    }
+    function init(){
+        var HTMLDate=document.getElementById("timer").innerHTML;
+        document.getElementById("clear_but").addEventListener("click", clear, "false");
+        document.getElementById("submit_but").addEventListener("click", sub, "false");
+        datesplit=HTMLDate.split(":");
+        console.log(datesplit);
+        if(datesplit.length==1){
+            document.getElementById("submit_but").disabled=false;
+            document.getElementById("timer").innerHTML="Start!!";
+        }
+        else{
+            var m=parseInt(datesplit[0]), s=parseInt(datesplit[1])+1;
+            count_down(m,s);
+        }
+        var mem=localStorage;
+        
+        for(var I=1;I<=5;I++){
+            var band_name = document.getElementById("bn"+I).value;
+            var week_select = document.getElementsByName("week"+I);
+            var time_select = document.getElementsByName("time_interval"+I);
+            var form=JSON.parse(mem.getItem(""+I));
+            console.log(form);
+            if(form==null) continue;
+            document.getElementById("bn"+I).value=form.band_name;
+            if(form.week!=null)
+                week_select[form.week].checked=true;
+            for(var i=0;i<form.times.length;i++)
+                time_select[form.times[i]].checked=true;
+        }
+        check_select();
+        
+    }
+    function count_down(m,s){
+        //console.log(date);
+        if(m==0 && s==0){
+            //alert("Time's up!");
+            document.getElementById("submit_but").disabled=false;
+            document.getElementById("timer").innerHTML="Start!!";
+            return;
+        }
+        if(s==0){
+            m--;
+            s=59;
+        }
+        else
+            s--;
+        
+        if(m>0 || s>0)
+            document.getElementById("submit_but").disabled=true;
+        
+        if(s<"10") s="0"+s;
+        var time=m+":"+s;
+        document.getElementById("timer").innerHTML=time;
+        setTimeout("count_down("+m+","+s+")",1000);
+        //setTimeout('count_down()',1000);
+    }
+    window.addEventListener("load", init, "false");
+    
+</script>
+
+<body>
+    <h1>海洋大學 熱音社 搶團系統</h1>
+    <div class="inrow">
+        <div id="contain" class="content">
+            <div class="form_template">
+                <form method="POST" action="/submit" name="form" id="form">
+                    <p>
+                        <label>團名：
+                        </label>
+                        <input type="text" id="bn1" name="band_name1">
+                    </p>
+                    <p>
+                        <label><input name="week1" type="checkbox" value="0" onclick="check_select(this)">星期一</label>
+                        <label><input name="week1" type="checkbox" value="1" onclick="check_select(this)">星期二</label>
+                        <label><input name="week1" type="checkbox" value="2" onclick="check_select(this)">星期三</label>
+                        <label><input name="week1" type="checkbox" value="3" onclick="check_select(this)">星期四</label>
+                        <label><input name="week1" type="checkbox" value="4" onclick="check_select(this)">星期五</label>
+                        <label><input name="week1" type="checkbox" value="5" onclick="check_select(this)">星期六</label>
+                        <label><input name="week1" type="checkbox" value="6" onclick="check_select(this)">星期日</label>
+                    </p>
+                    <p>
+                        <label><input name="time_interval1" type="checkbox" value="0" onclick="check_select(this)">A</label>
+                        <label><input name="time_interval1" type="checkbox" value="1" onclick="check_select(this)">B</label>
+                        <label><input name="time_interval1" type="checkbox" value="2" onclick="check_select(this)">C</label>
+                        <label><input name="time_interval1" type="checkbox" value="3" onclick="check_select(this)">D</label>
+                        <label><input name="time_interval1" type="checkbox" value="4" onclick="check_select(this)">E</label>
+                        <label><input name="time_interval1" type="checkbox" value="5" onclick="check_select(this)">F</label>
+                        <label><input name="time_interval1" type="checkbox" value="6" onclick="check_select(this)">G</label>
+                        <label><input name="time_interval1" type="checkbox" value="7" onclick="check_select(this)">H</label>
+                        <label><input name="time_interval1" type="checkbox" value="8" onclick="check_select(this)">I</label>
+                        <label><input name="time_interval1" type="checkbox" value="9" onclick="check_select(this)">J</label>
+                        <label><input name="time_interval1" type="checkbox" value="10" onclick="check_select(this)">K</label>
+                        <label><input name="time_interval1" type="checkbox" value="11" onclick="check_select(this)">L</label>
+                        <label><input name="time_interval1" type="checkbox" value="12" onclick="check_select(this)">M</label>
+                        <label><input name="time_interval1" type="checkbox" value="13" onclick="check_select(this)">N</label>
+                    </p>
+            
+                    <p>
+                        <label>團名：
+                        </label>
+                        <input type="text" id="bn2" name="band_name2">
+                    </p>
+                    <p>
+                        <label><input name="week2" type="checkbox" value="0" onclick="check_select(this)">星期一</label>
+                        <label><input name="week2" type="checkbox" value="1" onclick="check_select(this)">星期二</label>
+                        <label><input name="week2" type="checkbox" value="2" onclick="check_select(this)">星期三</label>
+                        <label><input name="week2" type="checkbox" value="3" onclick="check_select(this)">星期四</label>
+                        <label><input name="week2" type="checkbox" value="4" onclick="check_select(this)">星期五</label>
+                        <label><input name="week2" type="checkbox" value="5" onclick="check_select(this)">星期六</label>
+                        <label><input name="week2" type="checkbox" value="6" onclick="check_select(this)">星期日</label>
+                    </p>
+                    <p>
+                        <label><input name="time_interval2" type="checkbox" value="0" onclick="check_select(this)">A</label>
+                        <label><input name="time_interval2" type="checkbox" value="1" onclick="check_select(this)">B</label>
+                        <label><input name="time_interval2" type="checkbox" value="2" onclick="check_select(this)">C</label>
+                        <label><input name="time_interval2" type="checkbox" value="3" onclick="check_select(this)">D</label>
+                        <label><input name="time_interval2" type="checkbox" value="4" onclick="check_select(this)">E</label>
+                        <label><input name="time_interval2" type="checkbox" value="5" onclick="check_select(this)">F</label>
+                        <label><input name="time_interval2" type="checkbox" value="6" onclick="check_select(this)">G</label>
+                        <label><input name="time_interval2" type="checkbox" value="7" onclick="check_select(this)">H</label>
+                        <label><input name="time_interval2" type="checkbox" value="8" onclick="check_select(this)">I</label>
+                        <label><input name="time_interval2" type="checkbox" value="9" onclick="check_select(this)">J</label>
+                        <label><input name="time_interval2" type="checkbox" value="10" onclick="check_select(this)">K</label>
+                        <label><input name="time_interval2" type="checkbox" value="11" onclick="check_select(this)">L</label>
+                        <label><input name="time_interval2" type="checkbox" value="12" onclick="check_select(this)">M</label>
+                        <label><input name="time_interval2" type="checkbox" value="13" onclick="check_select(this)">N</label>
+                    </p>
+            
+                    <p>
+                        <label>團名：
+                        </label>
+                        <input type="text" id="bn3" name="band_name3">
+                    </p>
+                    <p>
+                        <label><input name="week3" type="checkbox" value="0" onclick="check_select(this)">星期一</label>
+                        <label><input name="week3" type="checkbox" value="1" onclick="check_select(this)">星期二</label>
+                        <label><input name="week3" type="checkbox" value="2" onclick="check_select(this)">星期三</label>
+                        <label><input name="week3" type="checkbox" value="3" onclick="check_select(this)">星期四</label>
+                        <label><input name="week3" type="checkbox" value="4" onclick="check_select(this)">星期五</label>
+                        <label><input name="week3" type="checkbox" value="5" onclick="check_select(this)">星期六</label>
+                        <label><input name="week3" type="checkbox" value="6" onclick="check_select(this)">星期日</label>
+                    </p>
+                    <p>
+                        <label><input name="time_interval3" type="checkbox" value="0" onclick="check_select(this)">A</label>
+                        <label><input name="time_interval3" type="checkbox" value="1" onclick="check_select(this)">B</label>
+                        <label><input name="time_interval3" type="checkbox" value="2" onclick="check_select(this)">C</label>
+                        <label><input name="time_interval3" type="checkbox" value="3" onclick="check_select(this)">D</label>
+                        <label><input name="time_interval3" type="checkbox" value="4" onclick="check_select(this)">E</label>
+                        <label><input name="time_interval3" type="checkbox" value="5" onclick="check_select(this)">F</label>
+                        <label><input name="time_interval3" type="checkbox" value="6" onclick="check_select(this)">G</label>
+                        <label><input name="time_interval3" type="checkbox" value="7" onclick="check_select(this)">H</label>
+                        <label><input name="time_interval3" type="checkbox" value="8" onclick="check_select(this)">I</label>
+                        <label><input name="time_interval3" type="checkbox" value="9" onclick="check_select(this)">J</label>
+                        <label><input name="time_interval3" type="checkbox" value="10" onclick="check_select(this)">K</label>
+                        <label><input name="time_interval3" type="checkbox" value="11" onclick="check_select(this)">L</label>
+                        <label><input name="time_interval3" type="checkbox" value="12" onclick="check_select(this)">M</label>
+                        <label><input name="time_interval3" type="checkbox" value="13" onclick="check_select(this)">N</label>
+                    </p>
+                
+                    <p>
+                        <label>團名：
+                        </label>
+                        <input type="text" id="bn4" name="band_name4">
+                    </p>
+                    <p>
+                        <label><input name="week4" type="checkbox" value="0" onclick="check_select(this)">星期一</label>
+                        <label><input name="week4" type="checkbox" value="1" onclick="check_select(this)">星期二</label>
+                        <label><input name="week4" type="checkbox" value="2" onclick="check_select(this)">星期三</label>
+                        <label><input name="week4" type="checkbox" value="3" onclick="check_select(this)">星期四</label>
+                        <label><input name="week4" type="checkbox" value="4" onclick="check_select(this)">星期五</label>
+                        <label><input name="week4" type="checkbox" value="5" onclick="check_select(this)">星期六</label>
+                        <label><input name="week4" type="checkbox" value="6" onclick="check_select(this)">星期日</label>
+                    </p>
+                    <p>
+                        <label><input name="time_interval4" type="checkbox" value="0" onclick="check_select(this)">A</label>
+                        <label><input name="time_interval4" type="checkbox" value="1" onclick="check_select(this)">B</label>
+                        <label><input name="time_interval4" type="checkbox" value="2" onclick="check_select(this)">C</label>
+                        <label><input name="time_interval4" type="checkbox" value="3" onclick="check_select(this)">D</label>
+                        <label><input name="time_interval4" type="checkbox" value="4" onclick="check_select(this)">E</label>
+                        <label><input name="time_interval4" type="checkbox" value="5" onclick="check_select(this)">F</label>
+                        <label><input name="time_interval4" type="checkbox" value="6" onclick="check_select(this)">G</label>
+                        <label><input name="time_interval4" type="checkbox" value="7" onclick="check_select(this)">H</label>
+                        <label><input name="time_interval4" type="checkbox" value="8" onclick="check_select(this)">I</label>
+                        <label><input name="time_interval4" type="checkbox" value="9" onclick="check_select(this)">J</label>
+                        <label><input name="time_interval4" type="checkbox" value="10" onclick="check_select(this)">K</label>
+                        <label><input name="time_interval4" type="checkbox" value="11" onclick="check_select(this)">L</label>
+                        <label><input name="time_interval4" type="checkbox" value="12" onclick="check_select(this)">M</label>
+                        <label><input name="time_interval4" type="checkbox" value="13" onclick="check_select(this)">N</label>
+                    </p>
+            
+                    <p>
+                        <label>團名：
+                        </label>
+                        <input type="text" id="bn5" name="band_name5">
+                    </p>
+                    <p>
+                        <label><input name="week5" type="checkbox" value="0" onclick="check_select(this)">星期一</label>
+                        <label><input name="week5" type="checkbox" value="1" onclick="check_select(this)">星期二</label>
+                        <label><input name="week5" type="checkbox" value="2" onclick="check_select(this)">星期三</label>
+                        <label><input name="week5" type="checkbox" value="3" onclick="check_select(this)">星期四</label>
+                        <label><input name="week5" type="checkbox" value="4" onclick="check_select(this)">星期五</label>
+                        <label><input name="week5" type="checkbox" value="5" onclick="check_select(this)">星期六</label>
+                        <label><input name="week5" type="checkbox" value="6" onclick="check_select(this)">星期日</label>
+                    </p>
+                    <p>
+                        <label><input name="time_interval5" type="checkbox" value="0" onclick="check_select(this)">A</label>
+                        <label><input name="time_interval5" type="checkbox" value="1" onclick="check_select(this)">B</label>
+                        <label><input name="time_interval5" type="checkbox" value="2" onclick="check_select(this)">C</label>
+                        <label><input name="time_interval5" type="checkbox" value="3" onclick="check_select(this)">D</label>
+                        <label><input name="time_interval5" type="checkbox" value="4" onclick="check_select(this)">E</label>
+                        <label><input name="time_interval5" type="checkbox" value="5" onclick="check_select(this)">F</label>
+                        <label><input name="time_interval5" type="checkbox" value="6" onclick="check_select(this)">G</label>
+                        <label><input name="time_interval5" type="checkbox" value="7" onclick="check_select(this)">H</label>
+                        <label><input name="time_interval5" type="checkbox" value="8" onclick="check_select(this)">I</label>
+                        <label><input name="time_interval5" type="checkbox" value="9" onclick="check_select(this)">J</label>
+                        <label><input name="time_interval5" type="checkbox" value="10" onclick="check_select(this)">K</label>
+                        <label><input name="time_interval5" type="checkbox" value="11" onclick="check_select(this)">L</label>
+                        <label><input name="time_interval5" type="checkbox" value="12" onclick="check_select(this)">M</label>
+                        <label><input name="time_interval5" type="checkbox" value="13" onclick="check_select(this)">N</label>
+                    </p>
+                    <input type="button" onclick="mem()" value="memory">
+                    <input type="button" value="submit" id="submit_but">
+                    <input type="reset" value="clear" id="clear_but">
+                </form>
+            </div>
+        </div>
+        <div class="content">
+            
+            {% autoescape false %}
+            <div id="sheet" class="incontent">{{ sheet }}</div>
+            {% endautoescape %}
+            
+            <div id="timer" class="timer">{{ timer }}</div>
+        </div>
+        
+    </div>
+    
+    
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <style> 
+        table {
+            display: table;
+            border-collapse: separate;
+            box-sizing: border-box;
+            text-indent: initial;
+            border-spacing: 2px;
+            border-color: grey;
+            width: 100%;
+        }
+        tbody {
+            border-collapse: collapse;
+            background-color: lightblue;
+            font-family: Perpetua;
+        }
+
+        table, td, tr {
+            border: 1px solid black;
+            width:calc(100%/4);
+        }
+
+        .inrow{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .ac{
+            color: green;
+        }
+        .wr{
+            color: red;
+        }
+        div{
+            width=70%;
+        }
+    </style>
+    <body>
+        <div>
+            {% autoescape false %}
+            <table>
+                {{result}}
+            </table>
+            {% endautoescape %}
+        </div>
+        <br>
+        <div>
+            <a href="/">Back to Home</a>
+        </div>
+    </body>
+
+</html>

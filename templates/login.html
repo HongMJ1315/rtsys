@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <script>
+        //跳出對話框 輸入password 並且傳送表單
+        function check(){
+            var password = prompt("請輸入密碼");
+            document.getElementById("password").value = password;
+            document.getElementById("form").submit();
+            
+        }
+        
+        
+        window.addEventListener("load", check, false);
+    </script>
+    <style> 
+        
+    </style>
+    <body>
+        <form action="/login" method="post" id="form"> 
+            <input  id="password" type="text" name="password"> 
+        </form>
+        
+    </body>
+
+</html>
