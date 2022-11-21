@@ -17,7 +17,9 @@
 <div style="color:#17a8e0;">天藍色部分：有三種按鍵，分別為Memory、Submit、Clear
 <li>Memory：將目前選擇情形作保存，避免重新整理或關閉網頁消失需要重選</li>
 <li>Submit：送出時段與團名，若倒數計時器未變成Start!!實會無法傳送</li>
+<li>Clear：清除選擇紀錄</li>
 </div>
+
 ![](https://i.imgur.com/FQBVrFS.jpg)
 
 ### 傳送後頁面

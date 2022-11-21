@@ -10,11 +10,9 @@ app = Flask(__name__)
 
 PASSWORD="123456"
 
-f=open('contain.txt','r',encoding = "UTF-8")
-text=f.read()
-
 time_list=[]
 
+time_int=["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00"]
 
 allow = time.strptime("2022/11/17 17:07:00",'%Y/%m/%d %H:%M:%S')
 
@@ -51,6 +49,7 @@ def login():
             print(times)
             try: 
                 allow=time.strptime(times,'%Y/%m/%d %H:%M:%S')
+                return str(times +"<a href='/'>Go Back</a>")
             except:
                 if(times=="clear"):
                     print("clear")
@@ -60,9 +59,9 @@ def login():
                     f=open("mem.txt","w",encoding="utf-8")
                     f.write(str(time_list))
                     f.close()
-            return str(times +"<a href='/'>Go Back</a>")
-            
-
+                    return str("all clear<a href='/'>Go Back</a>")
+            return render_template('error.html' )
+                    
 @app.route("/")
 def mainPage():
     now = math.floor(time.mktime(allow)-get_now())
@@ -74,9 +73,9 @@ def mainPage():
         res=str(now//60)+":"+ss
     else:
         res="Start!!"
-    sheet="<table><thead><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期日</td></thead><tbody>"
+    sheet="<table><thead><td>時間</td><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期日</td></thead><tbody>"
     for j in range(0,14):
-        sheet+="<tr>"
+        sheet+="<tr><td style='color: white;background-color: darkblue;'>"+time_int[j]+"</td>"
         for i in range(0,7):
             sheet+="<td"
             if(time_list[i][j]==0):
@@ -187,5 +186,5 @@ if __name__ == '__main__':
     f=open("mem.txt","r",encoding="utf-8")
     time_list=eval(f.read())
     f.close()
-    app.run()
-    # app.run('0.0.0.0')
+    #app.run()
+    app.run('0.0.0.0')
