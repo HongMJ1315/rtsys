@@ -186,5 +186,5 @@ if __name__ == '__main__':
     f=open("mem.txt","r",encoding="utf-8")
     time_list=eval(f.read())
     f.close()
-    #app.run()
+    # app.run()
     app.run('0.0.0.0')
