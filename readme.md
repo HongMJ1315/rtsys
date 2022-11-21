@@ -1,6 +1,6 @@
 # 海洋大學 熱音社 搶團系統
 
-搶團系統網址：https://rtsys.hongmj1315.repl.co/
+搶團系統網址：https://rtsys.hongmj1315.repl.co/ 
 網頁版readme：https://hongmj1315.github.io/rtsys/
 
 ## 開發始末
