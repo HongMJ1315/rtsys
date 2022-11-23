@@ -25,7 +25,7 @@ def get_now():
         response = c.request('time.cloudflare.com')
         print("ntp server")
         ts = response.tx_time
-    except: ts=time.time()
+    except: ts=time.time() + 8*3600
     return ts
 
 @app.route('/login')
@@ -184,7 +184,8 @@ if __name__ == '__main__':
         for j in range(0,14):
             time_list[i].append(0)
     f=open("mem.txt","r",encoding="utf-8")
-    time_list=eval(f.read())
+    try: time_list=eval(f.read())
+    except: pass
     f.close()
     # app.run()
     app.run('0.0.0.0')
