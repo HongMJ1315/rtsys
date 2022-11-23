@@ -34,7 +34,8 @@
 </head>
 
 <body>
-    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="海洋大學-熱音社-搶團系統" data-id="海洋大學-熱音社-搶團系統"><a class="anchor hidden-xs" href="#海洋大學-熱音社-搶團系統" title="海洋大學-熱音社-搶團系統"><span class="octicon octicon-link"></span></a><span>海洋大學 熱音社 搶團系統</span></h1><p><span>搶團系統網址：</span><a href="https://rtsys.hongmj1315.repl.co/" target="_blank" rel="noopener"><span>https://rtsys.hongmj1315.repl.co/</span></a></p><h2 id="開發始末" data-id="開發始末"><a class="anchor hidden-xs" href="#開發始末" title="開發始末"><span class="octicon octicon-link"></span></a><span>開發始末</span></h2><p><span>學期初時搶團過程因為有新生｢不知道一次可以搶多團」(個人覺得FB搶團不夠人性化)，以及陳X宇學長之前說過｢在手機12:00上船時發現提早」(各設備時間不一致)，和幹部在搶團後還要手動比對搶團順序(超級浪費時間)等諸多可以自動化的或是靠網路解決的問題，因此開發這網頁協助幹部。</span></p><h2 id="網頁介紹" data-id="網頁介紹"><a class="anchor hidden-xs" href="#網頁介紹" title="網頁介紹"><span class="octicon octicon-link"></span></a><span>網頁介紹</span></h2><h3 id="主頁" data-id="主頁"><a class="anchor hidden-xs" href="#主頁" title="主頁"><span class="octicon octicon-link"></span></a><span>主頁</span></h3><p><img src="https://i.imgur.com/CSHmZhV.jpg" alt="" loading="lazy"></p><div style="color:#eebf34;">黃色部分：選擇時段以及團名</div><div style="color:#1ba15e;">綠色部分：目前搶團剩餘時段，若時段已經有人會以紅色底標示(如下圖)</div><div style="color:#03245e;">深藍部分：倒數計時器，會以 ??:?? 表示，準確時間到秒，重新整理能與伺服器同步，目前測試下來會比伺服器快0.5秒左右，建議多重新整理確保與伺服器同步</div><div style="color:#17a8e0;">天藍色部分：有三種按鍵，分別為Memory、Submit、Clear
+    <div id="doc" class="markdown-body container-fluid comment-enabled comment-inner" data-hard-breaks="true"><h1 id="海洋大學-熱音社-搶團系統" data-id="海洋大學-熱音社-搶團系統"><a class="anchor hidden-xs" href="#海洋大學-熱音社-搶團系統" title="海洋大學-熱音社-搶團系統"><span class="octicon octicon-link"></span></a><span>海洋大學 熱音社 搶團系統</span></h1><p><span>搶團系統網址：</span><a href="https://rtsys.hongmj1315.repl.co/" target="_blank" rel="noopener"><span>https://rtsys.hongmj1315.repl.co/</span></a><br>
+<span>網頁版readme：</span><a href="https://hongmj1315.github.io/rtsys/" target="_blank" rel="noopener"><span>https://hongmj1315.github.io/rtsys/</span></a></p><h2 id="開發始末" data-id="開發始末"><a class="anchor hidden-xs" href="#開發始末" title="開發始末"><span class="octicon octicon-link"></span></a><span>開發始末</span></h2><p><span>學期初時搶團過程因為有新生｢不知道一次可以搶多團」(個人覺得FB搶團不夠人性化)，以及陳X宇學長之前說過｢在手機12:00上船時發現提早」(各設備時間不一致)，和幹部在搶團後還要手動比對搶團順序(超級浪費時間)等諸多可以自動化的或是靠網路解決的問題，因此開發這網頁協助幹部。</span></p><h2 id="網頁介紹" data-id="網頁介紹"><a class="anchor hidden-xs" href="#網頁介紹" title="網頁介紹"><span class="octicon octicon-link"></span></a><span>網頁介紹</span></h2><h3 id="主頁" data-id="主頁"><a class="anchor hidden-xs" href="#主頁" title="主頁"><span class="octicon octicon-link"></span></a><span>主頁</span></h3><p><img src="https://i.imgur.com/CSHmZhV.jpg" alt="" loading="lazy"></p><div style="color:#eebf34;">黃色部分：選擇時段以及團名</div><div style="color:#1ba15e;">綠色部分：目前搶團剩餘時段，若時段已經有人會以紅色底標示(如下圖)</div><div style="color:#03245e;">深藍部分：倒數計時器，會以 ??:?? 表示，準確時間到秒，重新整理能與伺服器同步，目前測試下來會比伺服器快0.5秒左右，建議多重新整理確保與伺服器同步</div><div style="color:#17a8e0;">天藍色部分：有三種按鍵，分別為Memory、Submit、Clear
 <li>Memory：將目前選擇情形作保存，避免重新整理或關閉網頁消失需要重選</li>
 <li>Submit：送出時段與團名，若倒數計時器未變成Start!!實會無法傳送</li>
 <li>Clear：清除選擇紀錄</li>
@@ -50,7 +51,10 @@
 <span>手速太快了，在伺服器開放前就按出submit</span></p><hr><p><img src="https://i.imgur.com/drPnvmB.jpg" alt="" loading="lazy"><br>
 <span>目前測試到在</span><strong><span>未按照順序填寫</span></strong><span>時會發生，所以請從第一格照順序填下來</span></p><h3 id="管理頁面" data-id="管理頁面"><a class="anchor hidden-xs" href="#管理頁面" title="管理頁面"><span class="octicon octicon-link"></span></a><span>管理頁面</span></h3><p><img src="https://i.imgur.com/pymOnR6.jpg" alt="" loading="lazy"><br>
 <span>在網址加入/login會進入到登入頁面，輸入密碼後會進到管理頁</span></p><p><img src="https://i.imgur.com/xMQXgEW.jpg" alt="" loading="lazy"><br>
-<span>目前管理頁相當簡便，只有兩個功能，修改搶團時間和清除搶團結果，修改搶團時間須按照指定格式 yyyy/mm/dd hh:MM:ss格式填寫；若填寫clear會清除搶團結果；若格式有誤會填寫其他東西會跳到錯誤頁面</span></p><h2 id="未來發展" data-id="未來發展"><a class="anchor hidden-xs" href="#未來發展" title="未來發展"><span class="octicon octicon-link"></span></a><span>未來發展</span></h2><h3 id="短期目標" data-id="短期目標"><a class="anchor hidden-xs" href="#短期目標" title="短期目標"><span class="octicon octicon-link"></span></a><span>短期目標</span></h3><ul>
+<span>目前管理頁相當簡便，只有兩個功能，修改搶團時間和清除搶團結果，修改搶團時間須按照指定格式 yyyy/mm/dd hh:MM:ss格式填寫；若填寫clear會清除搶團結果；若格式有誤會填寫其他東西會跳到錯誤頁面</span></p><h2 id="已知bug" data-id="已知bug"><a class="anchor hidden-xs" href="#已知bug" title="已知bug"><span class="octicon octicon-link"></span></a><span>已知bug</span></h2><ul>
+<li><span>如果表格有出現空團名的話會造成submit後的回傳表格出錯，但不影響搶團的最終結果</span></li>
+</ul><h2 id="未來發展" data-id="未來發展"><a class="anchor hidden-xs" href="#未來發展" title="未來發展"><span class="octicon octicon-link"></span></a><span>未來發展</span></h2><h3 id="短期目標" data-id="短期目標"><a class="anchor hidden-xs" href="#短期目標" title="短期目標"><span class="octicon octicon-link"></span></a><span>短期目標</span></h3><ul>
+<li><span>修bug </span><strong><span>ಠ_ಠ</span></strong></li>
 <li><span>修復未照順序填寫造成的錯誤</span></li>
 <li><span>優化GUI</span></li>
 </ul><p><span>理想在這學期做完</span></p><h3 id="中長期目標" data-id="中長期目標"><a class="anchor hidden-xs" href="#中長期目標" title="中長期目標"><span class="octicon octicon-link"></span></a><span>中長期目標</span></h3><ul>
@@ -59,6 +63,9 @@
 <li><span>可以從頁面增加減少搶團數</span></li>
 </ul><h2 id="更新" data-id="更新"><a class="anchor hidden-xs" href="#更新" title="更新"><span class="octicon octicon-link"></span></a><span>更新</span></h2><ul>
 <li><span>2022/11/21 表格加入時間</span></li>
+<li><span>2022/11/23 修改mem.txt的檔案為空造成的執行錯誤</span></li>
+</ul><h2 id="特別感謝" data-id="特別感謝"><a class="anchor hidden-xs" href="#特別感謝" title="特別感謝"><span class="octicon octicon-link"></span></a><span>特別感謝</span></h2><ul>
+<li><span>2022/11/23 幹部的測試，以及昕揚幫忙找到的bug</span></li>
 </ul></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
@@ -67,20 +74,22 @@
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li><a href="#海洋大學-熱音社-搶團系統" title="海洋大學 熱音社 搶團系統">海洋大學 熱音社 搶團系統</a><ul class="nav">
-<li><a href="#開發始末" title="開發始末">開發始末</a></li>
-<li><a href="#網頁介紹" title="網頁介紹">網頁介紹</a><ul class="nav">
-<li><a href="#主頁" title="主頁">主頁</a></li>
+<li class=""><a href="#海洋大學-熱音社-搶團系統" title="海洋大學 熱音社 搶團系統">海洋大學 熱音社 搶團系統</a><ul class="nav">
+<li class=""><a href="#開發始末" title="開發始末">開發始末</a></li>
+<li class=""><a href="#網頁介紹" title="網頁介紹">網頁介紹</a><ul class="nav">
+<li class=""><a href="#主頁" title="主頁">主頁</a></li>
 <li><a href="#傳送後頁面" title="傳送後頁面">傳送後頁面</a></li>
 <li><a href="#管理頁面" title="管理頁面">管理頁面</a></li>
 </ul>
 </li>
+<li><a href="#已知bug" title="已知bug">已知bug</a></li>
 <li><a href="#未來發展" title="未來發展">未來發展</a><ul class="nav">
 <li><a href="#短期目標" title="短期目標">短期目標</a></li>
 <li><a href="#中長期目標" title="中長期目標">中長期目標</a></li>
 </ul>
 </li>
 <li><a href="#更新" title="更新">更新</a></li>
+<li><a href="#特別感謝" title="特別感謝">特別感謝</a></li>
 </ul>
 </li>
 </ul>
@@ -90,20 +99,22 @@
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
-<li><a href="#海洋大學-熱音社-搶團系統" title="海洋大學 熱音社 搶團系統">海洋大學 熱音社 搶團系統</a><ul class="nav">
-<li><a href="#開發始末" title="開發始末">開發始末</a></li>
-<li><a href="#網頁介紹" title="網頁介紹">網頁介紹</a><ul class="nav">
-<li><a href="#主頁" title="主頁">主頁</a></li>
+<li class=""><a href="#海洋大學-熱音社-搶團系統" title="海洋大學 熱音社 搶團系統">海洋大學 熱音社 搶團系統</a><ul class="nav">
+<li class=""><a href="#開發始末" title="開發始末">開發始末</a></li>
+<li class=""><a href="#網頁介紹" title="網頁介紹">網頁介紹</a><ul class="nav">
+<li class=""><a href="#主頁" title="主頁">主頁</a></li>
 <li><a href="#傳送後頁面" title="傳送後頁面">傳送後頁面</a></li>
 <li><a href="#管理頁面" title="管理頁面">管理頁面</a></li>
 </ul>
 </li>
+<li><a href="#已知bug" title="已知bug">已知bug</a></li>
 <li><a href="#未來發展" title="未來發展">未來發展</a><ul class="nav">
 <li><a href="#短期目標" title="短期目標">短期目標</a></li>
 <li><a href="#中長期目標" title="中長期目標">中長期目標</a></li>
 </ul>
 </li>
 <li><a href="#更新" title="更新">更新</a></li>
+<li><a href="#特別感謝" title="特別感謝">特別感謝</a></li>
 </ul>
 </li>
 </ul>
